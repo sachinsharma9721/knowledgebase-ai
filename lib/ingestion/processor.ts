@@ -16,14 +16,22 @@ export async function processDocumentJob({
   sourceType: string;
   sourceUrl?: string | null;
 }) {
-  console.log(`[PROCESS] Starting processing for doc ${docId}, type: ${sourceType}, buffer size: ${fileBuffer?.length ?? 0}`);
-  
   const supabase = createAdminClient();
 
+  // Helper: update document with current progress so we can see where it stops
+  async function updateProgress(step: string) {
+    await supabase
+      .from("documents")
+      .update({ error_message: `[PROGRESS] ${step}` })
+      .eq("id", docId);
+  }
+
   try {
+    await updateProgress(`Step 0: Started. type=${sourceType}, bufferSize=${fileBuffer?.length ?? 0}`);
+
     // 1. Parse the document
-    console.log(`[PROCESS] Step 1: Parsing document...`);
     let text: string;
+    await updateProgress("Step 1: Parsing document...");
 
     if (sourceType === "url" && sourceUrl) {
       text = await parseUrl(sourceUrl);
@@ -33,29 +41,28 @@ export async function processDocumentJob({
       throw new Error("No file data or URL provided");
     }
 
-    console.log(`[PROCESS] Step 1 done: Parsed ${text.length} characters`);
+    await updateProgress(`Step 1 done: Parsed ${text.length} chars`);
 
     if (!text || text.trim().length === 0) {
       throw new Error("Document contains no extractable text");
     }
 
     // 2. Chunk the text
-    console.log(`[PROCESS] Step 2: Chunking text...`);
+    await updateProgress("Step 2: Chunking text...");
     const chunks = chunkText(text);
-    console.log(`[PROCESS] Step 2 done: Created ${chunks.length} chunks`);
+    await updateProgress(`Step 2 done: ${chunks.length} chunks created`);
 
     if (chunks.length === 0) {
       throw new Error("Document produced no chunks after splitting");
     }
 
     // 3. Generate embeddings
-    console.log(`[PROCESS] Step 3: Generating embeddings via Jina...`);
-    console.log(`[PROCESS] JINA_API_KEY present: ${!!process.env.JINA_API_KEY}`);
+    await updateProgress(`Step 3: Generating embeddings (JINA_API_KEY present: ${!!process.env.JINA_API_KEY})...`);
     const embeddingResults = await generateEmbeddings(chunks);
-    console.log(`[PROCESS] Step 3 done: Generated ${embeddingResults.length} embeddings`);
+    await updateProgress(`Step 3 done: ${embeddingResults.length} embeddings generated`);
 
     // 4. Store chunks with embeddings in batches
-    console.log(`[PROCESS] Step 4: Storing chunks in Supabase...`);
+    await updateProgress("Step 4: Storing chunks in Supabase...");
     const STORE_BATCH_SIZE = 50;
     for (let i = 0; i < embeddingResults.length; i += STORE_BATCH_SIZE) {
       const batch = embeddingResults.slice(i, i + STORE_BATCH_SIZE);
@@ -74,19 +81,18 @@ export async function processDocumentJob({
         throw new Error(`Failed to store chunks: ${insertError.message}`);
       }
     }
-    console.log(`[PROCESS] Step 4 done: Stored all chunks`);
+    await updateProgress("Step 4 done: All chunks stored");
 
     // 5. Update document status to 'ready'
-    console.log(`[PROCESS] Step 5: Updating document status to ready...`);
     await supabase
       .from("documents")
       .update({
         status: "ready",
         chunk_count: embeddingResults.length,
+        error_message: null, // Clear progress messages on success
       })
       .eq("id", docId);
-      
-    console.log(`[PROCESS] COMPLETE: Doc ${docId} processed successfully with ${embeddingResults.length} chunks`);
+
     return { success: true, chunkCount: embeddingResults.length };
   } catch (err) {
     console.error(`[PROCESS] FAILED for doc ${docId}:`, err);
@@ -100,12 +106,12 @@ export async function processDocumentJob({
           error_message: err instanceof Error ? err.message : "Unknown error",
         })
         .eq("id", docId);
-      console.log(`[PROCESS] Updated doc ${docId} status to failed`);
     } catch (updateErr) {
       console.error(`[PROCESS] Failed to update doc status:`, updateErr);
     }
-      
+
     throw err;
   }
 }
+
 
