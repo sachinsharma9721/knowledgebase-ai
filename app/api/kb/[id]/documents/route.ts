@@ -1,5 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
-import { NextResponse, after } from "next/server";
+import { NextResponse } from "next/server";
 import { processDocumentJob } from "@/lib/ingestion/processor";
 
 // Extend timeout so the background processing in after() doesn't get killed
@@ -128,23 +128,24 @@ export async function POST(
     return NextResponse.json({ error: insertError?.message || "Failed to create document" }, { status: 500 });
   }
 
+  // Process inline so the full maxDuration (300s) applies.
+  // Vercel's after() has its own short timeout and won't work for heavy processing.
   try {
-    after(async () => {
-      try {
-        await processDocumentJob({
-          kbId: id,
-          docId: doc.id,
-          fileBuffer,
-          sourceType,
-          sourceUrl,
-        });
-      } catch (err) {
-        console.error("Failed to execute background document processing:", err);
-      }
+    const result = await processDocumentJob({
+      kbId: id,
+      docId: doc.id,
+      fileBuffer,
+      sourceType,
+      sourceUrl,
     });
-  } catch (err) {
-    console.error("Failed to trigger document processing:", err);
-  }
 
-  return NextResponse.json(doc, { status: 201 });
+    return NextResponse.json({ ...doc, status: "ready", chunk_count: result.chunkCount }, { status: 201 });
+  } catch (err) {
+    console.error("Document processing failed:", err);
+    // processDocumentJob already marks the doc as 'failed' in the DB
+    return NextResponse.json(
+      { ...doc, status: "failed", error_message: err instanceof Error ? err.message : "Processing failed" },
+      { status: 201 }
+    );
+  }
 }
