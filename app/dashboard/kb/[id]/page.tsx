@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import { useChat } from "@ai-sdk/react";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import Link from "next/link";
 
 interface Document {
@@ -25,7 +25,6 @@ interface KnowledgeBase {
 
 export default function KBWorkspacePage() {
   const { id } = useParams<{ id: string }>();
-  const router = useRouter();
   const [kb, setKb] = useState<KnowledgeBase | null>(null);
   const [documents, setDocuments] = useState<Document[]>([]);
   const [docsLoading, setDocsLoading] = useState(true);
@@ -37,7 +36,7 @@ export default function KBWorkspacePage() {
   const chatEndRef = useRef<HTMLDivElement>(null);
 
   // Chat hook
-  const { messages, input, handleInputChange, handleSubmit, isLoading: chatLoading, setMessages } = useChat({
+  const { messages, input, handleInputChange, handleSubmit, isLoading: chatLoading } = useChat({
     api: `/api/kb/${id}/chat`,
     id: `kb-${id}`,
   });

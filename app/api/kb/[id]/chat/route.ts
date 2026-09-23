@@ -146,13 +146,14 @@ ${hasContext ? `CONTEXT FROM KNOWLEDGE BASE DOCUMENTS:\n\n${contextString}` : "N
     });
 
     return result.toDataStreamResponse();
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error(`Chat API Error at step [${currentStep}]:`, error);
+    const err = error as Error;
     return NextResponse.json(
       {
-        error: error.message || "An unexpected error occurred",
+        error: err.message || "An unexpected error occurred",
         failedAt: currentStep,
-        cause: error.cause?.message || undefined
+        cause: err.cause ? (err.cause as Error).message : undefined
       },
       { status: 500 }
     );

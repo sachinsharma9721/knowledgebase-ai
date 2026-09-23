@@ -55,7 +55,7 @@ export default function HomePage() {
             <span className="gradient-text">truly conversational.</span>
           </h1>
           <p className="hero-description animate-fade-in-up" style={{ animationDelay: "100ms" }}>
-            Upload your company's knowledge base and instantly deploy an AI chat widget on your website. 
+            Upload your company&apos;s knowledge base and instantly deploy an AI chat widget on your website. 
             Accurate, cited, and beautifully integrated in just one line of code.
           </p>
           <div className="hero-actions animate-fade-in-up" style={{ animationDelay: "200ms" }}>
@@ -138,7 +138,7 @@ export default function HomePage() {
           <div className="bento-card col-span-2 glass-card glass-card-interactive">
             <div className="feature-icon-wrapper"><MessageSquare className="feature-icon text-info" /></div>
             <h3>Zero-Hallucination Citations</h3>
-            <p>Every response strictly cites your exact documentation. If the answer isn't in your files, the AI safely admits it, protecting your brand from misinformation.</p>
+            <p>Every response strictly cites your exact documentation. If the answer isn&apos;t in your files, the AI safely admits it, protecting your brand from misinformation.</p>
           </div>
         </div>
       </section>
@@ -207,7 +207,7 @@ export default function HomePage() {
         <div className="testimonial-card glass-card glow-border-soft">
           <Quote size={40} className="text-accent opacity-30 mb-6" />
           <p className="testimonial-text text-lg italic">
-            "KnowledgeBase AI completely transformed our customer support. We uploaded our entire product manual, and now our users get instant, accurate answers without submitting tickets."
+            &quot;KnowledgeBase AI completely transformed our customer support. We uploaded our entire product manual, and now our users get instant, accurate answers without submitting tickets.&quot;
           </p>
           <div className="testimonial-author mt-8 flex items-center gap-4">
             <div className="author-avatar bg-accent-glow rounded-full w-12 h-12 flex items-center justify-center font-bold text-accent">

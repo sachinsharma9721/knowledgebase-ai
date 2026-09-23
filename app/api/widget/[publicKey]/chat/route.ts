@@ -129,7 +129,7 @@ ${hasContext ? `CONTEXT:\n\n${contextString}` : "NO RELEVANT CONTEXT FOUND - Tel
     kb_id: kb.id,
     question: lastUserMessage.content,
     was_answered: wasAnswered,
-  }).then(() => {}).catch((err) => console.error("Failed to log widget event:", err));
+  }).then(null, (err) => console.error("Failed to log widget event:", err));
 
   // 8. Stream the response
   const result = streamText({

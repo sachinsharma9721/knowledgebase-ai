@@ -63,7 +63,7 @@ export async function POST(
   }
 
   // Generate new key via raw SQL since we need gen_random_bytes
-  const { data, error } = await supabase.rpc("gen_random_uuid");
+  const { data } = await supabase.rpc("gen_random_uuid");
   const newKey = data ? String(data).replace(/-/g, "").slice(0, 32) : crypto.randomUUID().replace(/-/g, "");
 
   const { data: updated, error: updateError } = await supabase
