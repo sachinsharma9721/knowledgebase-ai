@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Widget Test Page</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      color: #333;
+    }
+
+    h1 {
+      color: #6366f1;
+    }
+
+    p {
+      line-height: 1.6;
+    }
+
+    .info {
+      background: #f0f0ff;
+      border: 1px solid #d0d0ff;
+      border-radius: 8px;
+      padding: 16px;
+      margin: 20px 0;
+    }
+
+    code {
+      background: #eee;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>🧪 KnowledgeBase AI — Widget Test Page</h1>
+  <p>This is a simple test page to verify the embeddable chat widget works correctly.</p>
+
+  <div class="info">
+    <p><strong>Instructions:</strong></p>
+    <ol>
+      <li>Replace <code>YOUR_PUBLIC_KEY</code> below with your actual KB widget public key</li>
+      <li>Make sure the app is running at <code>http://localhost:3000</code></li>
+      <li>Open this file in a browser</li>
+      <li>You should see a chat bubble in the bottom-right corner</li>
+    </ol>
+  </div>
+
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. This page simulates a customer-facing website where the
+    widget would be embedded.</p>
+
+  <!-- 
+    Replace YOUR_PUBLIC_KEY with your actual widget public key.
+    You can find it in: Dashboard → KB → Settings → Embed Widget
+  -->
+  <script src="http://localhost:3001/widget.js" data-kb="fa47830576831e3b6884e14725f39290"></script>
+</body>
+
+</html>
