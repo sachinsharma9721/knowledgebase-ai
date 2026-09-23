@@ -1,5 +1,9 @@
 import { createClient } from "@/lib/supabase/server";
-import { NextResponse } from "next/server";
+import { NextResponse, after } from "next/server";
+import { processDocumentJob } from "@/lib/ingestion/processor";
+
+// Extend timeout so the background processing in after() doesn't get killed
+export const maxDuration = 300;
 
 // GET /api/kb/[id]/documents — List documents for a KB
 export async function GET(
@@ -124,21 +128,19 @@ export async function POST(
     return NextResponse.json({ error: insertError?.message || "Failed to create document" }, { status: 500 });
   }
 
-  // Trigger async processing (use request.url to ensure correct port like 3001)
-  const processUrl = `${request.url}/${doc.id}/process`;
-
   try {
-    fetch(processUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        fileBase64: fileBuffer ? fileBuffer.toString("base64") : null,
-        sourceType,
-        sourceUrl,
-        serviceKey: process.env.SUPABASE_SERVICE_ROLE_KEY,
-      }),
-    }).catch((err) => {
-      console.error("Failed to trigger document processing:", err);
+    after(async () => {
+      try {
+        await processDocumentJob({
+          kbId: id,
+          docId: doc.id,
+          fileBuffer,
+          sourceType,
+          sourceUrl,
+        });
+      } catch (err) {
+        console.error("Failed to execute background document processing:", err);
+      }
     });
   } catch (err) {
     console.error("Failed to trigger document processing:", err);
