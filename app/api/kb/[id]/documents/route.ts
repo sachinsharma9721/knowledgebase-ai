@@ -128,10 +128,7 @@ export async function POST(
     return NextResponse.json({ error: insertError?.message || "Failed to create document" }, { status: 500 });
   }
 
-  console.log(`[UPLOAD] Doc ${doc.id} created, starting processing inline...`);
-
   // Process inline so the full maxDuration (300s) applies.
-  // Vercel's after() has its own short timeout and won't work for heavy processing.
   try {
     const result = await processDocumentJob({
       kbId: id,
@@ -141,10 +138,8 @@ export async function POST(
       sourceUrl,
     });
 
-    console.log(`[UPLOAD] Doc ${doc.id} processing complete, chunks: ${result.chunkCount}`);
     return NextResponse.json({ ...doc, status: "ready", chunk_count: result.chunkCount }, { status: 201 });
   } catch (err) {
-    console.error(`[UPLOAD] Doc ${doc.id} processing failed:`, err);
     // processDocumentJob already marks the doc as 'failed' in the DB
     return NextResponse.json(
       { ...doc, status: "failed", error_message: err instanceof Error ? err.message : "Processing failed" },

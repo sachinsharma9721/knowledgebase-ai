@@ -80,7 +80,6 @@ export function chunkText(text: string, options?: ChunkerOptions): Chunk[] {
   const chunkSize = options?.chunkSize ?? DEFAULT_CHUNK_SIZE;
   const chunkOverlap = options?.chunkOverlap ?? DEFAULT_CHUNK_OVERLAP;
 
-  console.log(`[CHUNKER] Starting chunking, text length: ${text.length}, chunkSize: ${chunkSize}, overlap: ${chunkOverlap}`);
 
   // Clean the text
   const cleanedText = text
@@ -90,13 +89,12 @@ export function chunkText(text: string, options?: ChunkerOptions): Chunk[] {
     .trim();
 
   if (cleanedText.length === 0) {
-    console.log(`[CHUNKER] Empty text after cleaning, returning 0 chunks`);
     return [];
   }
 
   // Split into raw chunks
   const rawChunks = recursiveSplit(cleanedText, SEPARATORS, chunkSize);
-  console.log(`[CHUNKER] Raw split produced ${rawChunks.length} chunks`);
+
 
   // Apply overlap
   const chunks: Chunk[] = [];
@@ -120,6 +118,6 @@ export function chunkText(text: string, options?: ChunkerOptions): Chunk[] {
     }
   }
 
-  console.log(`[CHUNKER] Final chunk count: ${chunks.length}`);
+
   return chunks;
 }
