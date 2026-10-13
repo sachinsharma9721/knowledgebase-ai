@@ -76,7 +76,7 @@ export default function DashboardLayout({
                 </linearGradient>
               </defs>
             </svg>
-            <span className="sidebar-brand-text">KnowledgeBase AI</span>
+            <span className="sidebar-brand-text">KnowledgeBase AI-2</span>
           </Link>
         </div>
 

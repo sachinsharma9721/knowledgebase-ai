@@ -60,7 +60,7 @@ export default function LoginPage() {
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
           }}>
-            KnowledgeBase AI
+            KnowledgeBase AI-2
           </span>
         </div>
         <h1 style={{ fontSize: "var(--font-size-2xl)", fontWeight: 700, marginBottom: "var(--space-xs)" }}>

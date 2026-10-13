@@ -1,5 +1,5 @@
 /**
- * KnowledgeBase AI — Embeddable Chat Widget
+ * KnowledgeBase AI-2 — Embeddable Chat Widget
  * 
  * Usage: <script src="https://yourapp.com/widget.js" data-kb="public_key_xyz"></script>
  * 
@@ -15,7 +15,7 @@
 
   const publicKey = scriptTag.getAttribute("data-kb");
   if (!publicKey) {
-    console.error("[KnowledgeBase AI] Missing data-kb attribute on script tag.");
+    console.error("[KnowledgeBase AI-2] Missing data-kb attribute on script tag.");
     return;
   }
 
@@ -37,7 +37,7 @@
       updateGreeting();
       updateTheme();
     })
-    .catch(() => {});
+    .catch(() => { });
 
   // Create host element
   const host = document.createElement("div");
@@ -353,7 +353,7 @@
         <svg width="16" height="16" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 2L8 10M16 2L11 16l-3-6-6-3 14-5z" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
     </div>
-    <div class="widget-powered">Powered by KnowledgeBase AI</div>
+    <div class="widget-powered">Powered by KnowledgeBase AI-2</div>
   `;
 
   container.appendChild(panel);

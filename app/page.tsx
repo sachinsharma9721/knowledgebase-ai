@@ -1,14 +1,14 @@
 import Link from "next/link";
-import { 
-  ArrowRight, 
-  BookOpen, 
-  Building2, 
-  Database, 
-  Layout, 
-  MessageSquare, 
-  Quote, 
-  ShieldCheck, 
-  Sparkles 
+import {
+  ArrowRight,
+  BookOpen,
+  Building2,
+  Database,
+  Layout,
+  MessageSquare,
+  Quote,
+  ShieldCheck,
+  Sparkles
 } from "lucide-react";
 
 export default function HomePage() {
@@ -55,7 +55,7 @@ export default function HomePage() {
             <span className="gradient-text">truly conversational.</span>
           </h1>
           <p className="hero-description animate-fade-in-up" style={{ animationDelay: "100ms" }}>
-            Upload your company&apos;s knowledge base and instantly deploy an AI chat widget on your website. 
+            Upload your company&apos;s knowledge base and instantly deploy an AI chat widget on your website.
             Accurate, cited, and beautifully integrated in just one line of code.
           </p>
           <div className="hero-actions animate-fade-in-up" style={{ animationDelay: "200ms" }}>
@@ -67,13 +67,13 @@ export default function HomePage() {
               Explore Features
             </Link>
           </div>
-          
+
           <div className="trusted-by animate-fade-in-up" style={{ animationDelay: "300ms" }}>
             <p className="trusted-title">Trusted by innovative teams worldwide</p>
             <div className="trusted-logos">
-              <div className="trusted-logo"><Building2 size={20}/> <span>Acme Corp</span></div>
-              <div className="trusted-logo"><Layout size={20}/> <span>GlobalNet</span></div>
-              <div className="trusted-logo"><Database size={20}/> <span>DataSys</span></div>
+              <div className="trusted-logo"><Building2 size={20} /> <span>Acme Corp</span></div>
+              <div className="trusted-logo"><Layout size={20} /> <span>GlobalNet</span></div>
+              <div className="trusted-logo"><Database size={20} /> <span>DataSys</span></div>
             </div>
           </div>
         </div>
@@ -89,16 +89,16 @@ export default function HomePage() {
             </div>
             <div className="mockup-body">
               <div className="mockup-sidebar">
-                <div className="mockup-sidebar-item active"><BookOpen size={14}/> Product Docs</div>
-                <div className="mockup-sidebar-item"><MessageSquare size={14}/> FAQ</div>
-                <div className="mockup-sidebar-item"><ShieldCheck size={14}/> Policies</div>
+                <div className="mockup-sidebar-item active"><BookOpen size={14} /> Product Docs</div>
+                <div className="mockup-sidebar-item"><MessageSquare size={14} /> FAQ</div>
+                <div className="mockup-sidebar-item"><ShieldCheck size={14} /> Policies</div>
               </div>
               <div className="mockup-chat">
                 <div className="mockup-msg user">What is the API rate limit for the Pro plan?</div>
                 <div className="mockup-msg assistant">
                   Based on your pricing documentation, the Pro plan includes up to 1,000 API requests per minute.
                   <div className="mockup-citation">
-                    <BookOpen size={12}/> API_Docs.pdf
+                    <BookOpen size={12} /> API_Docs.pdf
                   </div>
                 </div>
               </div>
@@ -118,7 +118,7 @@ export default function HomePage() {
             Everything you need to deploy reliable AI assistants without writing complex RAG pipelines.
           </p>
         </div>
-        
+
         <div className="bento-grid">
           <div className="bento-card col-span-2 glass-card glass-card-interactive">
             <div className="feature-icon-wrapper"><Database className="feature-icon text-accent-primary" /></div>
@@ -191,7 +191,7 @@ export default function HomePage() {
                 <span className="token-attr">{" src"}</span>
                 <span className="token-punct">{"="}</span>
                 <span className="token-string">{'"https://knowledgebase.ai/widget.js"'}</span>
-                <br/>
+                <br />
                 <span className="token-attr">{"        data-kb"}</span>
                 <span className="token-punct">{"="}</span>
                 <span className="token-string">{'"kb_public_key_123456789"'}</span>
@@ -207,7 +207,7 @@ export default function HomePage() {
         <div className="testimonial-card glass-card glow-border-soft">
           <Quote size={40} className="text-accent opacity-30 mb-6" />
           <p className="testimonial-text text-lg italic">
-            &quot;KnowledgeBase AI completely transformed our customer support. We uploaded our entire product manual, and now our users get instant, accurate answers without submitting tickets.&quot;
+            &quot;KnowledgeBase AI-2 completely transformed our customer support. We uploaded our entire product manual, and now our users get instant, accurate answers without submitting tickets.&quot;
           </p>
           <div className="testimonial-author mt-8 flex items-center gap-4">
             <div className="author-avatar bg-accent-glow rounded-full w-12 h-12 flex items-center justify-center font-bold text-accent">
@@ -226,7 +226,7 @@ export default function HomePage() {
         <div className="glass-card cta-card glow-border-strong relative overflow-hidden">
           <div className="cta-bg-glow" />
           <h2 className="relative z-10 text-3xl md:text-4xl font-bold mb-4">Ready to elevate your support?</h2>
-          <p className="relative z-10 text-secondary mb-8 max-w-lg mx-auto text-lg">Join thousands of companies using KnowledgeBase AI to empower their users with intelligent, cited answers.</p>
+          <p className="relative z-10 text-secondary mb-8 max-w-lg mx-auto text-lg">Join thousands of companies using KnowledgeBase AI-2 to empower their users with intelligent, cited answers.</p>
           <Link href="/signup" className="btn btn-primary btn-lg btn-glow group relative z-10">
             Create Your Knowledge Base
             <ArrowRight size={18} className="btn-icon-right transition-transform group-hover:translate-x-1" />
@@ -248,7 +248,7 @@ export default function HomePage() {
           </div>
         </div>
         <p className="text-secondary text-xs text-center border-t border-glass pt-8 mt-4 mx-6 opacity-60">
-          © {new Date().getFullYear()} KnowledgeBase AI. Designed for production.
+          © {new Date().getFullYear()} KnowledgeBase AI-2. Designed for production.
         </p>
       </footer>
     </div>
