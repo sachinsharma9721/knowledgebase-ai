@@ -29,7 +29,7 @@ export default function HomePage() {
             <div className="nav-logo glow-effect">
               <Sparkles size={20} className="text-white" />
             </div>
-            <span className="nav-brand-text">KnowledgeBase AI</span>
+            <span className="nav-brand-text">KnowledgeBase AI-2</span>
           </div>
           <div className="nav-actions">
             <Link href="/login" className="btn btn-ghost text-sm">
@@ -239,7 +239,7 @@ export default function HomePage() {
         <div className="footer-content max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center py-8 px-6 gap-6">
           <div className="nav-brand">
             <Sparkles size={16} className="text-accent" />
-            <span className="font-bold ml-2">KnowledgeBase AI</span>
+            <span className="font-bold ml-2">KnowledgeBase AI-2</span>
           </div>
           <div className="text-secondary text-sm flex gap-8 font-medium">
             <Link href="#" className="hover:text-accent transition-colors">Terms of Service</Link>
