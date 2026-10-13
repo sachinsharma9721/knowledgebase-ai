@@ -86,7 +86,7 @@ export default function SignupPage() {
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
           }}>
-            KnowledgeBase AI-2
+            KnowledgeBase AI
           </span>
         </div>
         <h1 style={{ fontSize: "var(--font-size-2xl)", fontWeight: 700, marginBottom: "var(--space-xs)" }}>

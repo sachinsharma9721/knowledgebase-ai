@@ -29,7 +29,7 @@ export default function HomePage() {
             <div className="nav-logo glow-effect">
               <Sparkles size={20} className="text-white" />
             </div>
-            <span className="nav-brand-text">KnowledgeBase AI-2</span>
+            <span className="nav-brand-text">KnowledgeBase AI</span>
           </div>
           <div className="nav-actions">
             <Link href="/login" className="btn btn-ghost text-sm">
@@ -207,7 +207,7 @@ export default function HomePage() {
         <div className="testimonial-card glass-card glow-border-soft">
           <Quote size={40} className="text-accent opacity-30 mb-6" />
           <p className="testimonial-text text-lg italic">
-            &quot;KnowledgeBase AI-2 completely transformed our customer support. We uploaded our entire product manual, and now our users get instant, accurate answers without submitting tickets.&quot;
+            &quot;KnowledgeBase AI completely transformed our customer support. We uploaded our entire product manual, and now our users get instant, accurate answers without submitting tickets.&quot;
           </p>
           <div className="testimonial-author mt-8 flex items-center gap-4">
             <div className="author-avatar bg-accent-glow rounded-full w-12 h-12 flex items-center justify-center font-bold text-accent">
@@ -226,7 +226,7 @@ export default function HomePage() {
         <div className="glass-card cta-card glow-border-strong relative overflow-hidden">
           <div className="cta-bg-glow" />
           <h2 className="relative z-10 text-3xl md:text-4xl font-bold mb-4">Ready to elevate your support?</h2>
-          <p className="relative z-10 text-secondary mb-8 max-w-lg mx-auto text-lg">Join thousands of companies using KnowledgeBase AI-2 to empower their users with intelligent, cited answers.</p>
+          <p className="relative z-10 text-secondary mb-8 max-w-lg mx-auto text-lg">Join thousands of companies using KnowledgeBase AI to empower their users with intelligent, cited answers.</p>
           <Link href="/signup" className="btn btn-primary btn-lg btn-glow group relative z-10">
             Create Your Knowledge Base
             <ArrowRight size={18} className="btn-icon-right transition-transform group-hover:translate-x-1" />
@@ -239,7 +239,7 @@ export default function HomePage() {
         <div className="footer-content max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center py-8 px-6 gap-6">
           <div className="nav-brand">
             <Sparkles size={16} className="text-accent" />
-            <span className="font-bold ml-2">KnowledgeBase AI-2</span>
+            <span className="font-bold ml-2">KnowledgeBase AI</span>
           </div>
           <div className="text-secondary text-sm flex gap-8 font-medium">
             <Link href="#" className="hover:text-accent transition-colors">Terms of Service</Link>
@@ -248,7 +248,7 @@ export default function HomePage() {
           </div>
         </div>
         <p className="text-secondary text-xs text-center border-t border-glass pt-8 mt-4 mx-6 opacity-60">
-          © {new Date().getFullYear()} KnowledgeBase AI-2. Designed for production.
+          © {new Date().getFullYear()} KnowledgeBase AI. Designed for production.
         </p>
       </footer>
     </div>
