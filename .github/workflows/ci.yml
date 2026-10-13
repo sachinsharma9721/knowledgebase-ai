@@ -17,11 +17,19 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Check env vars are present
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+        run: |
+          [ -n "$NEXT_PUBLIC_SUPABASE_URL" ] && echo "SUPABASE_URL: set" || echo "SUPABASE_URL: MISSING"
+          [ -n "$NEXT_PUBLIC_SUPABASE_ANON_KEY" ] && echo "SUPABASE_KEY: set" || echo "SUPABASE_KEY: MISSING"
 
       - name: Build
         run: npm run build
